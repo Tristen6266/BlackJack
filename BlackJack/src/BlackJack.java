@@ -30,8 +30,23 @@ public Boolean isAce(){
     return value=="A";
 }
 public String getImage(){
+    return "./cards/" + toString() + ".png";
+       
+}
     
+}
+ArrayList<Card> deck;
+    Random random = new Random();
 
-}
-}
+    Card hiddenCard;
+    ArrayList<Card> dealerHand;
+    int dealerSum;
+    int dealerAceCount;
+
+    ArrayList<Card> playerHand;
+    int playerSum;
+    int playerAceCount;
+
+    int boardWidth = 600;
+    int boardHeight = boardWidth;
 }
