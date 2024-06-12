@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -49,4 +48,28 @@ ArrayList<Card> deck;
 
     int boardWidth = 600;
     int boardHeight = boardWidth;
+    int cardWidth = 110; 
+    int cardHeight = 154;
+
+    JFrame frame = new JFrame("Black Jack");
+    JPanel gamePanel = new JPanel() {
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+        }
+         {
+           
+            Image hiddenCardImg = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
+            if (!stayButton.isEnabled()) {
+                hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
+            }
+            g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
+    }
+    for (int i = 0; i < dealerHand.size(); i++) {
+        Card card = dealerHand.get(i);
+        Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
+        g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5)*i, 20, cardWidth, cardHeight, null);
+    }
+};
+
 }
