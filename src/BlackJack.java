@@ -106,3 +106,38 @@ g.drawString(message, 220, 250);
 e.printStackTrace();
 }
 };
+JPanel buttonPanel = new JPanel();
+JButton hitButton = new JButton("Hit");
+JButton stayButton = new JButton("Stay");
+
+BlackJack() {
+    startGame();
+
+    frame.setVisible(true);
+    frame.setSize(boardWidth, boardHeight);
+    frame.setLocationRelativeTo(null);
+    frame.setResizable(false);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    gamePanel.setLayout(new BorderLayout());
+    gamePanel.setBackground(new Color(53, 101, 77));
+    frame.add(gamePanel);
+
+    hitButton.setFocusable(false);
+    buttonPanel.add(hitButton);
+    stayButton.setFocusable(false);
+    buttonPanel.add(stayButton);
+    frame.add(buttonPanel, BorderLayout.SOUTH);
+     
+    hitButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            Card card = deck.remove(deck.size()-1);
+            playerSum += card.getValue();
+            playerAceCount += card.isAce() ? 1 : 0;
+            playerHand.add(card);
+            if (reducePlayerAce() > 21) { //A + 2 + J --> 1 + 2 + J
+                hitButton.setEnabled(false); 
+            }
+            gamePanel.repaint();
+        }
+    });
